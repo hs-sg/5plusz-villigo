@@ -2,7 +2,9 @@ package com.splusz.villigo.domain;
 
 import org.springframework.data.annotation.Id;
 
+import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.JoinColumn;
@@ -11,27 +13,43 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "cars")
 @Getter @Setter
 @NoArgsConstructor
 public class Car extends BaseTimeEntity {
+	
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Basic(optional = false)
     private String name;
-    private String color;
-    private String detail;
-    private int fee;
-    private int minRentalTime;
-
-    @ManyToOne
-    @JoinColumn(name = "brand_id")
+    
+    @Basic(optional = false)
+    private int old;
+    
+    @ToString.Exclude @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "brand_id") @Basic(optional = false)
     private Brand brand;
-
-    @ManyToOne
-    @JoinColumn(name = "addresses_id")
+    
+    @ToString.Exclude @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "color_id") @Basic(optional = false)
+    private Color color;
+    
+    private String detail;
+    
+    @Basic(optional = false)
+    private int fee;
+    
+    @ToString.Exclude @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "user_id") @Basic(optional = false)
+    private User user;
+    
+    @ToString.Exclude @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "address_id") @Basic(optional = false)
     private Address address;
+    
+    @Basic(optional = false)
+    private Boolean drive;
+    
+    private int minRentalTime;
     
 }

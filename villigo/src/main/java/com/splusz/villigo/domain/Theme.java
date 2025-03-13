@@ -1,7 +1,9 @@
 package com.splusz.villigo.domain;
 
+import org.hibernate.annotations.NaturalId;
 import org.springframework.data.annotation.Id;
 
+import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,5 +20,6 @@ public class Theme {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Basic(optional = false) @NaturalId
     private String theme;
 }

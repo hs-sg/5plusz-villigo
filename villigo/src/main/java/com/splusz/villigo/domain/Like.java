@@ -4,7 +4,9 @@ import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.Id;
 
+import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.JoinColumn;
@@ -13,6 +15,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "likes")
@@ -23,11 +26,13 @@ public class Like extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+	@ToString.Exclude @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "user_id") @Basic(optional = false)
     private User user; // 좋아요 누른 사용자
 
-    private Long itemId; // 좋아요 대상 아이템 ID (BAG, CAR, JJAM 등)
-    private String itemType; // 좋아요 대상의 유형 (예: "BAG", "CAR", "JJAM")
+	@Basic(optional = false)
+    private Long itemId; // 좋아요 대상 아이템 ID (BAG, CAR 등)
+	
+	@ToString.Exclude @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "rental_category_id") @Basic(optional = false)
+    private RentalCategory rentalCategory; // 좋아요 대상의 유형 (예: "BAG", "CAR")
 
 }

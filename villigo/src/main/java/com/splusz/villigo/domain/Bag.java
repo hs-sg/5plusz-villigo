@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,13 +21,29 @@ import lombok.ToString;
 @Getter @Setter
 @NoArgsConstructor
 public class Bag extends BaseTimeEntity {
+	
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Basic(optional = false)
     private String name;
-    private String color;
-
+    
     @ToString.Exclude @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "brand_id") @Basic(optional = false)
     private Brand brand;
+    
+    @ToString.Exclude @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "color_id") @Basic(optional = false)
+    private Color color;
+    
+    private String detail;
+    
+    @Basic(optional = false)
+    private int fee;
+    
+    @ToString.Exclude @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "user_id") @Basic(optional = false)
+    private User user;
+    
+    @ToString.Exclude @OneToOne(fetch = FetchType.LAZY) @JoinColumn(name = "address_id") @Basic(optional = false)
+    private Address address;
+
 
 }

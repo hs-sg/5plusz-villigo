@@ -2,6 +2,7 @@ package com.splusz.villigo.domain;
 
 import org.springframework.data.annotation.Id;
 
+import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,6 +19,9 @@ public class ChatRoom {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Basic(optional = false)
     private String name;
+    
+    @Basic(optional = false)
     private String status;
 }

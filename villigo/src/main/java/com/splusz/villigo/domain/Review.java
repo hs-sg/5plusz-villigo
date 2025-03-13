@@ -4,7 +4,9 @@ import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.Id;
 
+import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.JoinColumn;
@@ -13,6 +15,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "reviews")
@@ -22,15 +25,15 @@ public class Review extends BaseTimeEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "writer_id")
+	@ToString.Exclude @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "user_id") @Basic(optional = false)
     private User writer;
 
-    private Long targetId;
+	@ToString.Exclude @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "user_id") @Basic(optional = false)
+    private User target;
+	
     private String content;
 
-    @ManyToOne
-    @JoinColumn(name = "keyword_id")
+	@ToString.Exclude @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "review_keyword_id") @Basic(optional = false)
     private ReviewKeyword keyword;
 
 }
