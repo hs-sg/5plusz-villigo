@@ -1,0 +1,37 @@
+package com.splusz.villigo.domain;
+
+import java.time.LocalDateTime;
+
+import org.springframework.data.annotation.Id;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(name = "reviews")
+@Getter @Setter
+@NoArgsConstructor
+public class Review {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "writer_id")
+    private User writer;
+
+    private Long targetId;
+    private String content;
+
+    @ManyToOne
+    @JoinColumn(name = "keyword_id")
+    private ReviewKeyword keyword;
+
+    private LocalDateTime createdTime;
+}
