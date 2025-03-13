@@ -1,8 +1,7 @@
 package com.splusz.villigo.domain;
 
 import org.hibernate.annotations.NaturalId;
-import org.springframework.data.annotation.Id;
-
+import jakarta.persistence.Id;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
