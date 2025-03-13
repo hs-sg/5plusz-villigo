@@ -19,7 +19,7 @@ import lombok.Setter;
 @Table(name = "reservations")
 @Getter @Setter
 @NoArgsConstructor
-public class Reservation {
+public class Reservation extends BaseTimeEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -37,7 +37,5 @@ public class Reservation {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-
-    private LocalDateTime createdTime;
-    private LocalDateTime modifiedTime;
+    
 }

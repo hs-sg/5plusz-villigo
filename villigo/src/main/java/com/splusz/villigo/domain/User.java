@@ -18,7 +18,7 @@ import lombok.Setter;
 @Table(name = "users")
 @Getter @Setter
 @NoArgsConstructor
-public class User {
+public class User extends BaseTimeEntity{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -31,8 +31,6 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "theme_id")
     private Theme theme;
-
-    private LocalDateTime createdTime;
-    private LocalDateTime modifiedTime;
+    
 }
 

@@ -1,7 +1,5 @@
 package com.splusz.villigo.domain;
 
-import java.time.LocalDateTime;
-
 import org.springframework.data.annotation.Id;
 
 import jakarta.persistence.Entity;
@@ -18,7 +16,7 @@ import lombok.Setter;
 @Table(name = "alarms")
 @Getter @Setter
 @NoArgsConstructor
-public class Alarm {
+public class Alarm extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,5 +29,4 @@ public class Alarm {
     private String content;
     private String status;  // 알람 상태 (예: "읽음", "안 읽음")
     
-    private LocalDateTime createdTime;
 }

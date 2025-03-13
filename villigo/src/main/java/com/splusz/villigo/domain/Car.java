@@ -1,7 +1,5 @@
 package com.splusz.villigo.domain;
 
-import java.time.LocalDateTime;
-
 import org.springframework.data.annotation.Id;
 
 import jakarta.persistence.Entity;
@@ -18,7 +16,7 @@ import lombok.Setter;
 @Table(name = "cars")
 @Getter @Setter
 @NoArgsConstructor
-public class Car {
+public class Car extends BaseTimeEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -35,7 +33,5 @@ public class Car {
     @ManyToOne
     @JoinColumn(name = "addresses_id")
     private Address address;
-
-    private LocalDateTime createdTime;
-    private LocalDateTime modifiedTime;
+    
 }

@@ -18,7 +18,7 @@ import lombok.Setter;
 @Table(name = "reviews")
 @Getter @Setter
 @NoArgsConstructor
-public class Review {
+public class Review extends BaseTimeEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -33,5 +33,4 @@ public class Review {
     @JoinColumn(name = "keyword_id")
     private ReviewKeyword keyword;
 
-    private LocalDateTime createdTime;
 }

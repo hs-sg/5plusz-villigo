@@ -16,7 +16,7 @@ import lombok.Setter;
 @Table(name = "rental_images")
 @Getter @Setter
 @NoArgsConstructor
-public class RentalImage {
+public class RentalImage extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,6 +24,5 @@ public class RentalImage {
     private Long itemId; // 이미지가 속한 아이템 ID (BAG, CAR, JJAM 등)
     private String itemType; // 아이템의 유형 (예: "BAG", "CAR", "JJAM")
     private String filePath; // 이미지 파일 경로
-
-    private LocalDateTime createdTime = LocalDateTime.now();
+    
 }

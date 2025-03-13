@@ -18,7 +18,7 @@ import lombok.Setter;
 @Table(name = "likes")
 @Getter @Setter
 @NoArgsConstructor
-public class Like {
+public class Like extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,5 +30,4 @@ public class Like {
     private Long itemId; // 좋아요 대상 아이템 ID (BAG, CAR, JJAM 등)
     private String itemType; // 좋아요 대상의 유형 (예: "BAG", "CAR", "JJAM")
 
-    private LocalDateTime createdTime = LocalDateTime.now();
 }

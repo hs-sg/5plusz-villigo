@@ -18,7 +18,7 @@ import lombok.Setter;
 @Table(name = "reports")
 @Getter @Setter
 @NoArgsConstructor
-public class Report {
+public class Report extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,5 +32,6 @@ public class Report {
     private User reportedUser; // 신고 당한 유저
 
     private String detail;
-    private LocalDateTime createdTime;
+    
+    
 }
