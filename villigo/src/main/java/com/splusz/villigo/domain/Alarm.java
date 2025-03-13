@@ -1,10 +1,9 @@
 package com.splusz.villigo.domain;
 
-import org.springframework.data.annotation.Id;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -28,5 +27,4 @@ public class Alarm extends BaseTimeEntity {
     private Long reservationId;
     private String content;
     private String status;  // 알람 상태 (예: "읽음", "안 읽음")
-    
 }
