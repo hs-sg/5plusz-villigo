@@ -25,8 +25,8 @@ import lombok.ToString;
 public class BaseTimeEntity {
 
 	@CreatedDate // 엔터티 최초 생성 시간을 저장하는 필드.
-	private LocalDateTime createdTime;
+	private LocalDateTime created_time;
 	
 	@LastModifiedDate // 엔터티 최종 수정 시간을 저장하는 필드.
-	private LocalDateTime modifiedTime;
+	private LocalDateTime modified_time;
 }

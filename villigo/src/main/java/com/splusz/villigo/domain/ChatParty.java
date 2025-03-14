@@ -7,6 +7,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,6 +17,7 @@ import lombok.ToString;
 @Table(name = "chat_parties")
 @Getter @Setter
 @NoArgsConstructor
+@EqualsAndHashCode
 public class ChatParty {
 
 	@EmbeddedId @ToString.Exclude @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "chat_room_id") @Basic(optional = false)
