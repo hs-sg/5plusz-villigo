@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/layout/fragments :: htmlHead('젤리 충전', '/css/jjam.css')}">
+</head>
+<body>
+    <!-- 헤더 및 네비게이션 -->
+    <th:block th:replace="~{/layout/fragments :: pageHeader('젤리 충전')}"></th:block>
+
+    <!-- 젤리 충전 옵션 -->
+    <main class="container mt-5">
+        <div class="row">
+            <!-- 백엔드에서 데이터가 있으면 표시 -->
+            <div class="col-md-4 mb-4" th:each="option : ${chargeOptions}">
+                <div class="card shadow-sm">
+                    <!--  추가 보너스 배너 -->
+                    <div class="ribbon">
+                        <span th:text="'추가 증정 ' + ${option.bonus}'"></span>
+                    </div>
+
+                    <div class="card-body text-center">
+                        <h3 th:text="${option.amount} + ' 젤리'"></h3>
+                        <p class="text-muted fw-bold" th:text="'₩' + ${option.price}"></p>
+                        <button class="btn btn-charge w-100" th:attr="data-amount=${(option != null and option.amount != null) ? option.amount : 1000}">충전하기</button>
+
+                    </div>
+                </div>
+            </div>
+        
+            <!--  백엔드에서 데이터가 없을 때 기본 카드 표시 -->
+            <div class="col-md-4 mb-4" th:if="${chargeOptions == null}">
+                <div class="card shadow-sm">
+                    <!-- 🎀 기본 보너스 배너 -->
+                    <div class="ribbon">
+                        <span>추가 증정 100</span>
+                    </div>
+
+                    <div class="card-body text-center">
+                        <h3>1,000 젤리</h3>
+                        <p class="text-muted fw-bold">₩5,000</p>
+                        <button class="btn btn-charge w-100" th:attr="data-amount=${(option != null and option.amount != null) ? option.amount : 1000}">충전하기</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bootstrap JS -->
+    <th:block th:replace="~{/layout/fragments :: bootstrapJS}"></th:block>
+
+    <!-- Custom JS -->
+    <script th:src="@{/js/jjam.js}"></script>
+
+</body>
+</html>

@@ -24,7 +24,7 @@ public class Report extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-	@ToString.Exclude @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "repoter_id") @Basic(optional = false)
+	@ToString.Exclude @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "reporter_id") @Basic(optional = false)
     private User reporter; // 신고한 유저
 
 	@ToString.Exclude @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "reported_id") @Basic(optional = false)
