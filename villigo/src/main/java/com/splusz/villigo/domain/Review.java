@@ -23,10 +23,10 @@ public class Review extends BaseTimeEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-	@ToString.Exclude @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "user_id") @Basic(optional = false)
+	@ToString.Exclude @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "writer_id") @Basic(optional = false)
     private User writer;
 
-	@ToString.Exclude @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "user_id") @Basic(optional = false)
+	@ToString.Exclude @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "target_id") @Basic(optional = false)
     private User target;
 	
     private String content;

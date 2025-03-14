@@ -1,12 +1,9 @@
 package com.splusz.villigo.domain;
 
-import jakarta.persistence.Id;
-
 import jakarta.persistence.Basic;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -21,7 +18,7 @@ import lombok.ToString;
 @NoArgsConstructor
 public class ChatParty {
 
-	@ToString.Exclude @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "chat_room_id") @Basic(optional = false)
+	@EmbeddedId @ToString.Exclude @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "chat_room_id") @Basic(optional = false)
     private ChatRoom chatRoom;
 
 	@ToString.Exclude @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "user_id") @Basic(optional = false)
