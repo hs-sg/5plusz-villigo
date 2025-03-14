@@ -3,6 +3,7 @@ package com.splusz.villigo.domain;
 import org.hibernate.annotations.NaturalId;
 
 import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -38,17 +39,27 @@ public class User extends BaseTimeEntity{
     @Basic(optional = false)
     private String password;
     
-    @Basic(optional = false)
+    private String realname;
+    
     private String phone;
     
-    @Basic(optional = false)
     private String region;
     
     @ToString.Exclude @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "theme_id") @Basic(optional = false)
     private Theme theme;
     
     @Basic(optional = false)
+    @Column(insertable = false) //-> 데이터베이스에서 default가 지정되어 있는 컬럼
     private int score;
     
+    // phone, region, theme, realname 필드 수정용
+    public User update(String realname, String phone, String region, Theme theme) {
+    	this.realname = realname;
+    	this.phone = phone;
+    	this.region = region;
+    	this.theme = theme;
+    	
+    	return this;
+    }
 }
 
