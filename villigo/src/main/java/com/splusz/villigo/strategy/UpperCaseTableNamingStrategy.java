@@ -8,7 +8,6 @@ public class UpperCaseTableNamingStrategy implements PhysicalNamingStrategy {
 	
 	@Override
 	public Identifier toPhysicalTableName(Identifier logicalName, JdbcEnvironment jdbcEnvironment) {
-		// 주석
 		if (logicalName == null) {
 			return null;
 		}
