@@ -29,7 +29,7 @@ public class ChatMessage extends BaseTimeEntity {
     private User sender;
 
     @Basic(optional = false)
-    private String messageType;
+    private ChatMessageType messageType;
     
     @Basic(optional = false)
     private String content;
