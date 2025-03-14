@@ -126,17 +126,18 @@ public class ChatService {
 	}
 
 	// 상대방 찾기
-    public Long getReceiverId(ChatRoom chatRoom, Long senderId) {
-        return chatPartyRepo.findByChatRoomId(chatRoom.getId()).stream()
-                .map(ChatParty::getParticipant) // 채팅방 참가자 가져오기
-                .filter(user -> !user.getId().equals(senderId)) // 본인이 아닌 상대방 찾기
-                .map(User::getId)
-                .findFirst() // 상대방 ID 반환
-                .orElseThrow(() -> {
-                    log.error("상대방을 찾을 수 없습니다. 채팅방: {} | 보낸 사람: {}", chatRoom.getId(), senderId);
-                    return new IllegalArgumentException("상대방을 찾을 수 없습니다.");
-                });
-    }
+	public Long getReceiverId(ChatRoom chatRoom, Long senderId) {
+	    return chatPartyRepo.findByChatRoomId(chatRoom.getId()).stream()
+	            .map(ChatParty::getParticipantEntity)
+	            .filter(user -> user != null)
+	            .filter(user -> !user.getId().equals(senderId))
+	            .map(User::getId)
+	            .findFirst()
+	            .orElseThrow(() -> {
+	                log.error("상대방을 찾을 수 없습니다. 채팅방: {} | 보낸 사람: {}", chatRoom.getId(), senderId);
+	                return new IllegalArgumentException("상대방을 찾을 수 없습니다.");
+	            });
+	}
 	
     // 기존 채팅방 조회 (중복 방지)
 	@Transactional(readOnly = true)
