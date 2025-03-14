@@ -1,5 +1,7 @@
 package com.splusz.villigo.domain;
 
+import com.splusz.villigo.dto.BagUpdateDto;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -21,6 +23,7 @@ import lombok.ToString;
 @Table(name = "bags")
 @Getter @Setter
 @Builder
+@ToString(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
 public class Bag extends BaseTimeEntity {
@@ -42,11 +45,17 @@ public class Bag extends BaseTimeEntity {
     @Basic(optional = false)
     private int fee;
     
-    @ToString.Exclude @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "user_id") @Basic(optional = false)
+    @ToString.Exclude @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "users_id") @Basic(optional = false)
     private User user;
     
-    @ToString.Exclude @OneToOne(fetch = FetchType.LAZY) @JoinColumn(name = "address_id") @Basic(optional = false)
+    @ToString.Exclude @OneToOne(fetch = FetchType.LAZY) @JoinColumn(name = "addresses_id") @Basic(optional = false)
     private Address address;
 
+    public Bag update(BagUpdateDto dto) {
+        this.name = dto.getName();
+        this.detail = dto.getDetail();
+        this.fee = dto.getFee();
+        return this;
+    }
 
 }

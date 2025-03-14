@@ -26,6 +26,6 @@ public class Color {
     @Basic(optional = false)
     private String name;
 
-	@ToString.Exclude @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "rental_category_id") @Basic(optional = false)
+	@ToString.Exclude @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "rental_categories_id") @Basic(optional = false)
     private RentalCategory rentalCategory;
 }

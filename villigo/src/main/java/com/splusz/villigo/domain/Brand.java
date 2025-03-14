@@ -3,6 +3,7 @@ package com.splusz.villigo.domain;
 import org.hibernate.annotations.NaturalId;
 
 import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -29,6 +30,7 @@ public class Brand {
     private String name;
     
     @Basic(optional = false)
+    @Column(name = "image_path")
     private String imagePath;
 
     @ToString.Exclude @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "rental_category_id") @Basic(optional = false)

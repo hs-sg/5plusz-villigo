@@ -1,6 +1,7 @@
 package com.splusz.villigo.domain;
 
 import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,7 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "addresses")
+@Table(name = "ADDRESSES")
 @Getter @Setter
 @NoArgsConstructor
 public class Address {
@@ -21,7 +22,7 @@ public class Address {
     @Basic(optional = false)
     private String region;
     
-    @Basic(optional = false)
+    @Basic(optional = false) @Column(name = "detail_address")
     private String detailAddress;
     
     @Basic(optional = false)
