@@ -1,37 +1,21 @@
 package com.splusz.villigo.strategy;
 
 import org.hibernate.boot.model.naming.Identifier;
-import org.hibernate.boot.model.naming.PhysicalNamingStrategy;
+import org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl;
 import org.hibernate.engine.jdbc.env.spi.JdbcEnvironment;
 
-public class UpperCaseTableNamingStrategy implements PhysicalNamingStrategy {
-	
-	@Override
-	public Identifier toPhysicalTableName(Identifier logicalName, JdbcEnvironment jdbcEnvironment) {
-		if (logicalName == null) {
-			return null;
-		}
-		return Identifier.toIdentifier(logicalName.getText().toUpperCase());
-	}
-	
-	@Override
-	public Identifier toPhysicalSchemaName(Identifier logicalName, JdbcEnvironment jdbcEnvironment) {
-		return logicalName;
-	}
+public class UpperCaseTableNamingStrategy extends PhysicalNamingStrategyStandardImpl{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3148440905131512884L;
 
 	@Override
-	public Identifier toPhysicalSequenceName(Identifier logicalName, JdbcEnvironment jdbcEnvironment) {
-		return logicalName;
-	}
-
-	@Override
-	public Identifier toPhysicalColumnName(Identifier logicalName, JdbcEnvironment jdbcEnvironment) {
-		return logicalName;
-	}
-
-	@Override
-	public Identifier toPhysicalCatalogName(Identifier logicalName, JdbcEnvironment jdbcEnvironment) {
-		return logicalName;
-	}
-	
+    public Identifier toPhysicalTableName(Identifier name, JdbcEnvironment context) {
+        // 기본 변환을 먼저 적용한 후
+        Identifier identifier = super.toPhysicalTableName(name, context);
+        // 테이블 이름만 대문자로 변환
+        return Identifier.toIdentifier(identifier.getText().toUpperCase());
+	}	
 }
