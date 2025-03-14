@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/layout/fragments :: htmlHead('젤리 결제', '/css/payment.css')}">
+</head>
+<body>
+    <div class="container">
+        <h2>무통장 입금 안내</h2>
+        
+        <p class="info"><span id="amountText"></span> 젤리를 충전하려면<br>아래 계좌로 입금해주세요.</p>
+        
+        <div class="account-box">
+            <p>🏦 입금 계좌: <strong>빌리고은행 123-4567-89012</strong></p>
+            <p>📌 예금주: <strong>빌리고</strong></p>
+        </div>
+
+        <p class="info">입금 확인 후 충전이 완료됩니다.</p>
+        
+        <button class="btn-ok" onclick="window.close()">확인</button>
+    </div>
+
+    <script>
+        // URL에서 amount 값 가져오기
+        const urlParams = new URLSearchParams(window.location.search);
+        const amount = urlParams.get("amount") || "1000"; // 기본값 1000
+
+        // HTML에 표시
+        document.getElementById("amountText").innerText = amount;
+    </script>
+</body>
+</html>
